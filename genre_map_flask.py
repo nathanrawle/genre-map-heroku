@@ -29,16 +29,16 @@ def index():
     cluster = marker_cluster.MarkerCluster(data[['lat','lon']].values,popups)
 
     m.add_child(cluster)
-
-    # m.get_root().header.add_child(folium.Element(
-    #     '<meta name="viewport" content="width=device-width,'
-    #     ' initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />'
-    #     ))
     
     pat = '<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;">'
     repl = '<div style="width:100%;height:100%"><div style="position:relative;width:100%;height:100%;padding-bottom:0;">'
 
-    return m._repr_html_().replace(pat,repl)
+    html = m._repr_html_().replace(pat,repl)
+
+    pat = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A'
+    repl = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20height%3Ddevice-height%2C%0A'
+
+    return html.replace(pat,repl)
 
 
 if __name__ == '__main__':
