@@ -34,9 +34,11 @@ def index():
         '<meta name="viewport" content="width=device-width,'
         ' initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />'
         ))
+    
+    pat = '<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;">'
+    repl = '<div style="width:100%;height:100%"><div style="position:relative;width:100%;height:100%;padding-bottom:0;">'
 
-
-    return m._repr_html_()
+    return m._repr_html_().replace(pat,repl)
 
 
 if __name__ == '__main__':
