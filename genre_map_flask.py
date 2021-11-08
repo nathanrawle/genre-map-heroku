@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    folium_map = folium.Map(location=[6.5, 3.4],
+    m = folium.Map(location=[6.5, 3.4],
                     zoom_start=3)
     
     data = read_csv('top_by_oixl_20211107.csv')
@@ -28,8 +28,15 @@ def index():
 
     cluster = marker_cluster.MarkerCluster(data[['lat','lon']].values,popups)
 
-    folium_map.add_child(cluster)
-    return folium_map._repr_html_()
+    m.add_child(cluster)
+
+    m.get_root().header.add_child(folium.Element(
+        '<meta name="viewport" content="width=device-width,'
+        ' initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />'
+        ))
+
+
+    return m._repr_html_()
 
 
 if __name__ == '__main__':
