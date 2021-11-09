@@ -52,10 +52,10 @@ def index():
 
     html = m._repr_html_().replace(pat,repl)
 
-    pat = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A'
-    repl = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20height%3Ddevice-height%2C%0A'
+    # pat = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%0A'
+    # repl = '3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20height%3Ddevice-height%2C%0A'
 
-    return html.replace(pat,repl)
+    return html#.replace(pat,repl)
 
 
 if __name__ == '__main__':
