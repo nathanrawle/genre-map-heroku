@@ -11,7 +11,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     m = folium.Map(location=[6.5, 3.4],
-                    zoom_start=3)
+                    zoom_start=2,
+                    min_zoom=2, 
+                    max_bounds=True,)
     
     data = read_csv('top_by_oixl_20211107.csv')
 
