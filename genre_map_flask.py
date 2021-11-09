@@ -40,7 +40,7 @@ def index():
             <ul><li>{ats} {ge} artists from {loc} ({round(pct * 100, 2):.1f}% of all {ge} artists)\
             <li>{lac} artists from {loc} in total\
             <li>{gac} {ge} artists in total</em><ul></p>"
-        ) for loc, ctr, ge, ats, pct, oixl, ppa, gac, lac in popup_data.values
+        ) for loc, ctr, ge, ats, pct, oixl, ppa, gac, lac in popup_data
     ]
 
     cluster = marker_cluster.MarkerCluster(locations,popups)
