@@ -17,6 +17,21 @@ def index():
     
     data = read_csv('top_by_oixl_20211107.csv')
 
+    locations = data[['lat','lon']].values
+    popup_data = data[
+        [
+            'loc',
+            'locator_country',
+            'genre',
+            'artists',
+            'pct_of_genre',
+            'one_in_x_loc',
+            'people_per_artist',
+            'genre_artists_count',
+            'loc_artists_count'
+        ]
+    ].values
+
     popups = [
         folium.Popup(
             f"<p style='white-space:nowrap'>{loc} ({ctr}) is the modern home of: <strong>{ge}</strong><br/>\
@@ -25,10 +40,10 @@ def index():
             <ul><li>{ats} {ge} artists from {loc} ({round(pct * 100, 2):.1f}% of all {ge} artists)\
             <li>{lac} artists from {loc} in total\
             <li>{gac} {ge} artists in total</em><ul></p>"
-        ) for loc, lt, pop, ctr, lat, lon, ge, ats, pct, oixl, oixg, ppa, gac, glc, lac, lgc in data.values
+        ) for loc, ctr, ge, ats, pct, oixl, ppa, gac, lac in popup_data.values
     ]
 
-    cluster = marker_cluster.MarkerCluster(data[['lat','lon']].values,popups)
+    cluster = marker_cluster.MarkerCluster(locations,popups)
 
     m.add_child(cluster)
     
